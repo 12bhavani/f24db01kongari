@@ -2,4 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p #{title} page is running by Bhavani Kongari
+  button(type="button", class="btn btn-success", onclick="boost()") Sample Button
+  div(id="boost") add in extra
+
+  script.
+    var value = 0;
+    var amt = 3;
+    function boost(){
+      amt += 1;
+      value += amt;
+      document.getElementById("boost").innerText = `Boosted ${value} by ${amt}.`;
+    }
