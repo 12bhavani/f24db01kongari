@@ -4,3 +4,12 @@ block content
   h1= title
   p #{title} page is running by Bhavani Kongari
   
+  - var results = [{ name: 'Fluffy', age: 3, OwnerName: 'Morgas' }, { name: 'Whiskers', age: 2, OwnerName: 'Briana' }, { name: 'Mittens', age: 3, OwnerName: 'James' }];
+
+  .container-fluid
+    .row
+      each kitten in results
+        .col-sm-2
+          p Name: #{kitten.name}
+          p Age: #{kitten.age}
+          p Owner: #{kitten.OwnerName}
