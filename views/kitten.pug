@@ -8,8 +8,13 @@ block content
 
   .container-fluid
     .row
-      each kitten in results
+      each kitten, index in results
         .col-sm-2
-          p Name: #{kitten.name}
-          p Age: #{kitten.age}
-          p Owner: #{kitten.OwnerName}
+          div(class="kitten-card" onclick=`buy(${index})`)
+            p Name: #{kitten.name}
+            p Age: #{kitten.age}
+            p Owner: #{kitten.OwnerName}
+  script. 
+    function buy(index){
+      alert(`You purchased item ${index}`);
+      }
