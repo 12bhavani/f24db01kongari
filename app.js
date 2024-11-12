@@ -79,7 +79,11 @@ app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log(`Request URL: ${req.originalUrl}`);
   next(createError(404));
+});
+app.use((req, res) => {
+  res.status(404).send("Route not found");
 });
 
 // error handler

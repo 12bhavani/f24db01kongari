@@ -28,9 +28,23 @@ exports.kitten_detail = function(req, res) {
 };
 
 // Handle Kitten creation on POST
-exports.kitten_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Kitten create POST');
+// Handle Kitten create on POST
+exports.kitten_create_post = async function(req, res) {
+    console.log(req.body);
+    let document = new Kitten();
+    // Populate the Kitten fields from the request body
+    document.name = req.body.name;
+    document.age = req.body.age;
+    document.owner_name = req.body.owner_name;
+    try {
+        let result = await document.save();
+        res.send(result); // Send back the saved kitten document
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 };
+
 
 // Handle Kitten delete on DELETE
 exports.kitten_delete = function(req, res) {
