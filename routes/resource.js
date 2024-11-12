@@ -10,6 +10,9 @@ var kitten_controller = require('../controllers/kitten');
 // GET resources base
 router.get('/kittens', kitten_controller.kitten_list);
 
+router.get('/', api_controller.api);
+
+
 /// KITTEN ROUTES ///
 // POST request for creating a Kitten
 router.post('/kittens', kitten_controller.kitten_create_post);
