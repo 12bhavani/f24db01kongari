@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  p #{title} page is running by Bhavani Kongari
+  ul
+    each kitten in results 
+      ul 
+        li= kitten.name
+        li= kitten.age 
+        li= kitten.owner_name 
+        br
+
+
+
+  //- - var results = [{ name: 'Fluffy', age: 3, OwnerName: 'Morgas' }, { name: 'Whiskers', age: 2, OwnerName: 'Briana' }, { name: 'Mittens', age: 3, OwnerName: 'James' }];
+
+  //- .container-fluid
+  //-   .row
+  //-     each kitten, index in results
+  //-       .col-sm-2
+  //-         div(class="kitten-card" onclick=`buy(${index})`)
+  //-           p Name: #{kitten.name}
+  //-           p Age: #{kitten.age}
+  //-           p Owner: #{kitten.OwnerName}
+  //- script. 
+  //-   function buy(index){
+  //-     alert(`You purchased item ${index}`);
+  //-     }
