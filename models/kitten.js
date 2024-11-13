@@ -6,6 +6,6 @@ const kittenSchema = new mongoose.Schema({
   owner_name: String
 });
 
-const Kitten = mongoose.model('Kitten', kittenSchema);  // Create the model and export it
+const Kitten = mongoose.model('Kitten', kittenSchema);
 
 module.exports = Kitten;
