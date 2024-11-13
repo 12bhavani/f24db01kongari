@@ -82,9 +82,6 @@ app.use(function(req, res, next) {
   console.log(`Request URL: ${req.originalUrl}`);
   next(createError(404));
 });
-app.use((req, res) => {
-  res.status(404).send("Route not found");
-});
 
 // error handler
 app.use(function(err, req, res, next) {
