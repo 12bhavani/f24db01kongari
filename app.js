@@ -7,7 +7,13 @@ var logger = require('morgan');
 require('dotenv').config();
 const connectionString = process.env.MONGO_CON
 mongoose = require('mongoose');
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 10000,
+})
+.then(() => console.log("MongoDB connected successfully!"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 var bodyParser = require('body-parser');
 var resourceRouter = require('./routes/resource');
