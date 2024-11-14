@@ -61,6 +61,9 @@ if (reseed) {
 
 var app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -81,6 +84,7 @@ app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
 app.use('/resource', resourceRouter);
 
+app.put('/kitten/:id', kitten_controlers.kitten_update_put);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   console.log(`Request URL: ${req.originalUrl}`);

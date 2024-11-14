@@ -8,5 +8,6 @@ var router = express.Router();
 // });
 
 router.get('/', kitten_controlers.kitten_view_all_Page);
+router.get('/:id', kitten_controlers.kitten_detail);
 
 module.exports = router;
