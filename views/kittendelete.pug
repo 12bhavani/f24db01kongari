@@ -1,0 +1,49 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let kittenid = toShow._id
+    - let kitten_type = toShow.name
+    - let kittenage = toShow.age
+    - let kittenowner_name = toShow.owner_name
+    - let actionid = "/resource/kittens/" + kittenid
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='kittenAttr mr-3') kitten ID is:
+        div #{kittenid}
+      div.row
+        div(class='kittenAttr mr-3') kitten Name is:
+        div #{kitten_type}
+      div.row
+        div(class='kittenAttr mr-3') kitten Age is:
+        div #{kittenage}
+      div.row
+        div(class='kittenAttr mr-3') kitten Owner Age is:
+        div #{kittenowner_name}
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+  script.
+    function cancel() {
+      window.location.href='/kittens'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      
+      fetch(actionid, {
+        method: 'DELETE' 
+        }).then((resp) => {
+        return resp.json();
+        }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/kittens'
+        // TODO handle body
+        }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }    
+                  

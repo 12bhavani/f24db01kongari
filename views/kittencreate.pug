@@ -3,8 +3,8 @@ block content
   h1= title
   form(id='kittenForm', action="/resource/kittens", method="POST")
     div.form-group
-      label.kittenAttr(for='kitten_name') kitten name
-      input#kitten_name(type='text', name='kitten_name')
+      label.kittenAttr(for='name') kitten name
+      input#name(type='text', name='name')
     div.form-group
       label.kittenAttr(for='age') kitten age
       input#age(type='number', name='age')
@@ -15,14 +15,18 @@ block content
   script.
     document.forms['kittenForm'].addEventListener('submit', (event) => {
       event.preventDefault();
-    fetch(event.target.action, {
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
       method: 'POST',
       body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
       return resp.json(); // or resp.text() or whatever the server sends
       }).then((body) => {
       alert("Save succeded")
+      // TODO handle body
       }).catch((error) => {
+      // TODO handle error
       alert("Save failed " + error )
       });
     });
+  

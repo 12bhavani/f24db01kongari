@@ -50,6 +50,19 @@ exports.kitten_view_one_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
 };
+exports.kitten_delete_Page = async function(req, res) {
+  console.log("Delete view for id " + req.query.id)
+   try{
+   result = await Kitten.findById(req.query.id)
+   res.render('kittendelete', { title: 'kitten Delete', toShow:
+   result });
+   }
+   catch(err){
+   res.status(500)
+   res.send(`{'error': '${err}'}`);
+   }
+};
+
 exports.kitten_create_Page = function(req, res) {
   console.log("create view")
   try{
@@ -60,7 +73,19 @@ exports.kitten_create_Page = function(req, res) {
   res.send(`{'error': '${err}'}`);
   }
   };
-  
+
+exports.kitten_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await Kitten.findById(req.query.id)
+    res.render('kittenupdate', { title: 'kitten Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
 exports.kitten_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
@@ -68,7 +93,7 @@ exports.kitten_detail = async function(req, res) {
     res.send(result)
     } catch (error) {
     res.status(500)
-    res.send(`{"error": document!!!! for id ${req.params.id} not found`);
+    res.send(`{"error": document for id ${req.params.id} not found`);
     }
     };
  

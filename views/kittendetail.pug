@@ -2,21 +2,25 @@ extends layout
 
 block content
   h1= title
-  - let kittenid= toShow._id
-  - let kitten_name= toShow.name
-  - let kittenage= toShow.age
-  - let kittenowner_name= toShow.owner_name
-  div
-    div.row
-      div(class='kittenAttr mr-3') kitten ID is:
-      div #{kittenid}
-    div.row
-      div(class='kittenAttr mr-3') kitten name is:
-      div #{kitten_name}
-    div.row
-      div(class='kittenAttr mr-3') kitten age is:
-      div #{kittenage}
-    div.row
-      div(class='kittenAttr mr-3') kitten owner_name is:
-      div #{kittenowner_name}
-
+  if (toShow == null)
+    h2 No instance to Detail
+  else
+    - let kittenid= toShow._id
+    - let kitten_name= toShow.name
+    - let kittenage= toShow.age
+    - let kittenowner_name= toShow.owner_name
+    div
+      div.row
+        div(class='kittenAttr mr-3') kitten ID is:
+        div #{kittenid}
+      div.row
+        div(class='kittenAttr mr-3') kitten name is:
+        div #{kitten_name}
+      div.row
+        div(class='kittenAttr mr-3') kitten age is:
+        div #{kittenage}
+      div.row
+        div(class='kittenAttr mr-3') kitten owner_name is:
+        div #{kittenowner_name}
+  
+  
