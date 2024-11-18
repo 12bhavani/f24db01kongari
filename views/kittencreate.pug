@@ -1,0 +1,28 @@
+extends layout
+block content
+  h1= title
+  form(id='kittenForm', action="/resource/kittens", method="POST")
+    div.form-group
+      label.kittenAttr(for='kitten_name') kitten name
+      input#kitten_name(type='text', name='kitten_name')
+    div.form-group
+      label.kittenAttr(for='age') kitten age
+      input#age(type='number', name='age')
+    div.form-group
+      label.kittenAttr(for='owner_name') kitten owner_name
+      input#owner_name(type='text', name='owner_name')
+    input(type="submit")
+  script.
+    document.forms['kittenForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+    fetch(event.target.action, {
+      method: 'POST',
+      body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+      return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+      alert("Save succeded")
+      }).catch((error) => {
+      alert("Save failed " + error )
+      });
+    });

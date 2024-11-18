@@ -1,6 +1,7 @@
+
 // controllers/kitten.js
 var Kitten = require('../models/kitten'); 
-
+ 
 
 // List of all Kittens
 exports.kitten_list = async function(req, res) {
@@ -11,7 +12,7 @@ exports.kitten_list = async function(req, res) {
         res.status(500).send(`{"error": ${err}}`);
     }
 };
-
+ 
 exports.kitten_view_all_Page = async function(req, res) {
     try {
       const theKittens = await Kitten.find(); // Retrieve all kittens from the database
@@ -21,7 +22,7 @@ exports.kitten_view_all_Page = async function(req, res) {
       res.send(`{"error": ${err}}`);
     }
 };
-
+ 
 // Handle Kitten create on POST
 exports.kitten_create_post = async function(req, res) {
     console.log(req.body);
@@ -31,13 +32,35 @@ exports.kitten_create_post = async function(req, res) {
     document.owner_name = req.body.owner_name;
     try {
         let result = await document.save();
-        res.send(result); 
+        res.send(result);
     } catch (err) {
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
 };
 
+exports.kitten_view_one_Page = async function(req, res) {
+  console.log("single view for id " + req.query.id)
+    try{
+    result = await Kitten.findById(req.query.id)
+    res.render('kittendetail', { title: 'kitten Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+};
+exports.kitten_create_Page = function(req, res) {
+  console.log("create view")
+  try{
+  res.render('kittencreate', { title: 'kitten Create'});
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+  };
+  
 exports.kitten_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
@@ -48,7 +71,7 @@ exports.kitten_detail = async function(req, res) {
     res.send(`{"error": document!!!! for id ${req.params.id} not found`);
     }
     };
-
+ 
 exports.kitten_delete = async function(req, res) {
     console.log("delete " + req.params.id)
     try {
@@ -60,30 +83,30 @@ exports.kitten_delete = async function(req, res) {
     res.send(`{"error": Error deleting ${err}}`);
     }
     };
-
+ 
 exports.kitten_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`);
     try {
       let toUpdate = await Kitten.findById(req.params.id);
-  
+ 
       if (!toUpdate) {
         return res.status(404).send({ error: `Kitten with id ${req.params.id} not found` });
       }
-  
+ 
       if (req.body.name) toUpdate.name = req.body.name;
       if (req.body.age) toUpdate.age = req.body.age;
       if (req.body.owner_name) toUpdate.owner_name = req.body.owner_name;
-  
+ 
       if (req.body.checkboxsale) {
-        toUpdate.sale = true; 
+        toUpdate.sale = true;
       } else {
-        toUpdate.sale = false; 
+        toUpdate.sale = false;
       }
-  
+ 
       let result = await toUpdate.save();
       console.log("Success " + result);
       res.send(result);
-  
+ 
     } catch (err) {
       console.error(`Error during update: ${err}`);
       res.status(500).send({ error: `Update for id ${req.params.id} failed: ${err.message}` });
