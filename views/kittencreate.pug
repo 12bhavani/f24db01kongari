@@ -1,5 +1,7 @@
 extends layout
+  
 block content
+  link(rel='stylesheet', href='public/stylesheet/style.css')
   h1= title
   form(id='kittenForm', action="/resource/kittens", method="POST")
     div.form-group

@@ -8,8 +8,35 @@ a {
 }
 
 .kittenAttr {
-  background-color: aquamarine;
-  width: 120px;
+  background-color: lavender;
+  font-size: 20pt;
+  width: 250px;
+  margin: 10px;
+  padding: 10px;
   }
 
-  
+body {
+  font-family: Times, sans-serif;
+  background-color: deeppink;
+}
+
+div {
+  margin: 5px;
+  background: lightgreen;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 6px purple
+}
+
+h1 {
+  color: yellow;
+}
+
+
+input {
+  background-color: lavender;
+  font-size: 20pt;
+  width: 200px;
+  margin: 10px;
+  padding: 8spx;
+}
