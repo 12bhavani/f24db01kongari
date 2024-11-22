@@ -10,6 +10,8 @@ block content
     div.form-group
       label.kittenAttr(for='age') kitten age
       input#age(type='number', name='age')
+      if errors && errors.age
+        span.error= errors.age.message
     div.form-group
       label.kittenAttr(for='owner_name') kitten owner_name
       input#owner_name(type='text', name='owner_name')

@@ -70,8 +70,7 @@ exports.kitten_create_Page = function(req, res) {
   res.render('kittencreate', { title: 'kitten Create'});
   }
   catch(err){
-  res.status(500)
-  res.send(`{'error': '${err}'}`);
+  res.status(500).json({ error: err.message });
   }
   };
 
