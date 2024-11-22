@@ -1,17 +1,11 @@
 extends layout
-
 block content
-  h1= title
-  p #{title} page is running by Bhavani Kongari
-  button(type="button", class="btn btn-success", onclick="boost()") Sample Button
-  div(id="boost") add in extra
-
-  script.
-    var value = 0;
-    var amt = 3;
-    function boost(){
-      amt += 1;
-      value += amt;
-      document.getElementById("boost").innerText = `Boosted ${value} by ${amt}.`;
-    }
-  a(href='/kitten') click for Kitten page
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/kitten") Take me to Kittens
+    br
+    a(href="/logout") Logout

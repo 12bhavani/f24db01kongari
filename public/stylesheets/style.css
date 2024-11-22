@@ -9,7 +9,7 @@ a {
 
 .kittenAttr {
   background-color: lavender;
-  font-size: 20pt;
+  font-size: 14pt;
   width: 250px;
   margin: 10px;
   padding: 10px;
@@ -18,12 +18,13 @@ a {
 body {
   font-family: Times, sans-serif;
   background-color: deeppink;
+  font-size: 14pt;
 }
 
 div {
   margin: 5px;
   background: lightgreen;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 4px 6px purple
 }

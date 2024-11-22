@@ -3,14 +3,23 @@ extends layout
 block content
   h1= title
   p #{title} page is running by Bhavani Kongari
-  ul
-    each kitten in results 
-      ul 
-        li= kitten.name
-        li= kitten.age 
-        li= kitten.owner_name 
-        br
+  div(class="container-fluid")
+    div(class="row m-1")
+      each kitten in results 
+        - let destination = `dispatch(\"/kitten/update?id=${kitten._id}\")`
+          div(class="row-sm-2", class="m-1") Kitten #{kitten.name} (#{kitten.age} years old) is owned by #{kitten.owner_name}  
+            button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
 
+  //- ul
+  //-   each kitten in results 
+  //-     ul 
+  //-       li= kitten.name
+  //-       li= kitten.age 
+  //-       li= kitten.owner_name 
 
 
   //- - var results = [{ name: 'Fluffy', age: 3, OwnerName: 'Morgas' }, { name: 'Whiskers', age: 2, OwnerName: 'Briana' }, { name: 'Mittens', age: 3, OwnerName: 'James' }];

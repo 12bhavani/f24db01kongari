@@ -50,6 +50,7 @@ exports.kitten_view_one_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
 };
+
 exports.kitten_delete_Page = async function(req, res) {
   console.log("Delete view for id " + req.query.id)
    try{
