@@ -3,12 +3,20 @@ extends layout
 block content
   h1= title
   p #{title} page is running by Bhavani Kongari
+  - let create_destination = `dispatch(\"/kitten/create\")`
+  button.btn( class="btn-primary ml-1", onclick= create_destination) Create
   div(class="container-fluid")
     div(class="row m-1")
       each kitten in results 
         - let destination = `dispatch(\"/kitten/update?id=${kitten._id}\")`
-          div(class="row-sm-2", class="m-1") Kitten #{kitten.name} (#{kitten.age} years old) is owned by #{kitten.owner_name}  
-            button.btn( class="btn-primary ml-1", onclick= destination) Update
+        
+        - let delete_destination = `dispatch(\"/kitten/delete?id=${kitten._id}\")`
+        - let detail_destination = `dispatch(\"/kitten/detail?id=${kitten._id}\")`
+          div(class="row-sm-2", class="m-1") Kitten #{kitten.name} (#{kitten.age} years old) is owned by #{kitten.owner_name} 
+            <br> 
+            button.btn( class="btn-primary ml-1", onclick= destination) Update   <br>
+            button.btn( class="btn-danger ml-1", onclick= delete_destination) Delete   <br>
+            button.btn( class="btn-secondary ml-1", onclick= detail_destination) Detail   <br>
   script.
     function dispatch(path){
       window.location.href=path

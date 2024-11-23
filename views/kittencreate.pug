@@ -7,6 +7,8 @@ block content
     div.form-group
       label.kittenAttr(for='name') kitten name
       input#name(type='text', name='name')
+      if errors && errors.name
+        span.error= errors.name.message
     div.form-group
       label.kittenAttr(for='age') kitten age
       input#age(type='number', name='age')
@@ -15,6 +17,8 @@ block content
     div.form-group
       label.kittenAttr(for='owner_name') kitten owner_name
       input#owner_name(type='text', name='owner_name')
+      if errors && errors.owner_name
+        span.error= errors.owner_name.message
     input(type="submit")
   script.
     document.forms['kittenForm'].addEventListener('submit', (event) => {
